@@ -1,5 +1,4 @@
 #!/bin/bash -x
-
 #
 # OwnCloud.pt / VPN (PPTP) CentOS
 #
