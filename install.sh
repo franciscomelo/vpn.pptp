@@ -9,8 +9,8 @@
 
 VPN_IP=`curl ipv4.icanhazip.com`
 
-VPN_USER="myuser"
-VPN_PASS="mypass"
+VPN_USERNAME="vpn.user"
+VPN_PASSWORD="vpn.pass"
 
 VPN_LOCAL="192.168.0.150"
 VPN_REMOTE="192.168.0.151-200"
@@ -33,7 +33,7 @@ echo "ms-dns 8.8.8.8" >> /etc/ppp/options.pptpd # Google DNS Primary
 echo "ms-dns 8.8.4.4" >> /etc/ppp/options.pptpd # Google DNS Secondary
 
 
-echo "$VPN_USER pptpd $VPN_PASS *" >> /etc/ppp/chap-secrets
+echo "$VPN_USERNAME pptpd $VPN_PASSWORD *" >> /etc/ppp/chap-secrets
 
 service iptables start
 echo "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE" >> /etc/rc.local
@@ -47,7 +47,7 @@ chkconfig pptpd on
 echo -e '\E[37;44m'"\033[1m Installation Log: /var/log/vpn-installer.log \033[0m"
 echo -e '\E[37;44m'"\033[1m You can now connect to your VPN via your external IP ($VPN_IP)\033[0m"
 
-echo -e '\E[37;44m'"\033[1m Username: $VPN_USER\033[0m"
-echo -e '\E[37;44m'"\033[1m Password: $VPN_PASS\033[0m"
+echo -e '\E[37;44m'"\033[1m Username: $VPN_USERNAME\033[0m"
+echo -e '\E[37;44m'"\033[1m Password: $VPN_PASSWORD\033[0m"
 
 ) 2>&1 | tee /var/log/vpn-installer.log
